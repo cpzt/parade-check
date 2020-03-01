@@ -47,27 +47,27 @@ class CheckCommand(ParadeCommand):
         else:
             deps = dict([(task.name, task.deps) for task in context.load_tasks().values()])
 
-        nondeps, duplicate, circular = self.check(deps)
+        nondeps, duplicate, circular = check(deps)
 
         print('------------------------------------------')
         if len(nondeps) == 0 and len(duplicate) == 0 and len(circular) == 0:
             print('PASS')
 
         if len(nondeps) > 0:
-            print('Invalid Dependencies:')
-            for k, v in nondeps:
+            print('[Invalid Dependencies]')
+            for k, v in nondeps.items():
                 print(k, ' ==>  ', v)
             print('------------------------------------------')
 
-        if len(nondeps) > 0:
-            print('Duplicate Dependencies:')
-            for k, v in duplicate:
+        if len(duplicate) > 0:
+            print('[Duplicate Dependencies]')
+            for k, v in duplicate.items():
                 print(k, ' ==>  ', v)
             print('------------------------------------------')
 
         if len(circular) > 0:
-            print('Circular Dependencies:')
-            for k, v in circular:
+            print('[Circular Dependencies]')
+            for k, v in circular.items():
                 print(k, ' ==>  ', v)
             print('------------------------------------------')
 

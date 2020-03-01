@@ -4,17 +4,19 @@ from setuptools import setup, find_packages
 
 setup(
     name='parade-check',
-    use_scm_version=True,
+    version="0.0.1",
     author='Pan Chen',
     author_email='chenpan9012@gmail.com',
     description='A check module of parade',
     url='https://github.com/qianmosolo/parade-check',
+    keyworks=["parade", "feature"],
     install_requires=['parade'],
     packages=find_packages('src'),
     package_dir=({'parade': 'src/parade'}),
     zip_safe=False,
     python_requires='>=3.4',
     include_package_data=True,
+    package_data={'': ['*.json', '*.xml', '*.yml', '*.tpl']},
     platforms=['any'],
     classifiers=[
         'Intended Audience :: Developers',
