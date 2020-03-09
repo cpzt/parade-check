@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='parade-check',
-    version="0.0.1.2",
+    version="0.0.1.3",
     author='Pan Chen',
     author_email='chenpan9012@gmail.com',
     description='A check module of parade',

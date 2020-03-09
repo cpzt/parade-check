@@ -13,6 +13,7 @@ def check(tasks):
                     nondeps_tasks[task] = set()
                 nondeps_tasks[task].add(dp)
             # check for duplicate dependencies
+            # print(dp, deps)
             if deps.count(dp) > 1:
                 if task not in duplicate_tasks:
                     duplicate_tasks[task] = set()
@@ -43,9 +44,12 @@ class CheckCommand(ParadeCommand):
             flowstore = context.get_flowstore()
             flow = flowstore.load(flow_name)
             if flow:
-                deps = flow.deps
+                deps = {k: list(v) for k, v in flow.deps.items()}  # 依赖
+                for task in flow.tasks:
+                    if task not in deps:
+                        deps[task] = []
         else:
-            deps = dict([(task.name, task.deps) for task in context.load_tasks().values()])
+            deps = dict([(task.name, list(task.deps)) for task in context.load_tasks().values()])
 
         nondeps, duplicate, circular = check(deps)
 
