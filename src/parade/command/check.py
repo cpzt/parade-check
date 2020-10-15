@@ -13,7 +13,6 @@ def check(tasks):
                     nondeps_tasks[task] = set()
                 nondeps_tasks[task].add(dp)
             # check for duplicate dependencies
-            # print(dp, deps)
             if deps.count(dp) > 1:
                 if task not in duplicate_tasks:
                     duplicate_tasks[task] = set()
@@ -30,7 +29,7 @@ def check(tasks):
 
     nondeps_tasks = {k: list(v) for k, v in nondeps_tasks.items()}
     duplicate_tasks = {k: list(v) for k, v in duplicate_tasks.items()}
-    # circular_tasks = {k: list(v) for k, v in circular_tasks.items()}
+
     return nondeps_tasks, duplicate_tasks, circular_tasks
 
 
